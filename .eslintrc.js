@@ -23,6 +23,7 @@ module.exports = {
     'comma-dangle': 0,
     'no-param-reassign': 0,
     'no-useless-return': 0,
+    'object-curly-newline': 0,
   },
   parserOptions: {
     parser: 'babel-eslint'

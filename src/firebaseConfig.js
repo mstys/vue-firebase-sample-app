@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 
-console.log('init firebase');
 /**
  * Firebase config
  */
@@ -22,10 +21,11 @@ const { currentUser } = auth;
 db.settings({ timestampsInSnapshots: true });
 
 const meals = db.collection('meals');
+const customers = db.collection('customers');
 
 /**
  * Firebase auth
  */
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-export { db, ui, currentUser, meals };
+export { db, ui, currentUser, meals, customers };

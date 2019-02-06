@@ -1,5 +1,5 @@
 # vue-learn-app
-
+Simple VueJs app to show basic patterns
 ## Project setup
 ```
 yarn install

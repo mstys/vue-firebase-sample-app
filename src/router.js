@@ -4,10 +4,9 @@ import firebase from 'firebase';
 
 import Home from './views/Home.vue';
 import Beers from './views/Beers.vue';
-import Meals from './views/Meals.vue';
 import Login from '@/views/Login.vue';
 import Dashboard from '@/views/Dashboard.vue';
-import BeerDetails from '@/components/BeerDetails.vue';
+import CreateUser from '@/views/CreateUser.vue';
 import Modal from '@/components/Modal.vue';
 
 import HelloWorld from '@/components/HelloWorld.vue';
@@ -23,47 +22,22 @@ const RouterVue = new Router({
       path: '/',
       name: 'home',
       component: Home,
-
-      meta: {
-        showModal: false
+    },
+    {
+      path: '/about-conf',
+      name: 'aboutProject',
+      components: {
+        default: Home,
+        modal: Modal
+      },
+      props: {
+        modal: () => ({ content: HelloWorld })
       }
     },
     {
       path: '/beers',
       name: 'beers',
       component: Beers,
-
-      children: [
-        {
-          path: ':id/details',
-          name: 'beerDetails',
-          components: {
-            modal: BeerDetails
-          },
-          meta: {
-            showModal: true
-          }
-        }
-      ]
-    },
-    {
-      path: '/meals',
-      name: 'meals',
-      component: Meals
-      // props: {
-      //   modal: { content: HelloWorld },
-      // },
-    },
-    {
-      path: '/meals/create',
-      name: 'createMeal',
-      components: {
-        default: Meals,
-        modal: Modal
-      },
-      props: {
-        modal: () => ({ content: HelloWorld })
-      }
     },
     {
       path: '/login',
@@ -77,6 +51,14 @@ const RouterVue = new Router({
       }
     },
     {
+      path: '/about',
+      name: 'about',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
@@ -85,19 +67,24 @@ const RouterVue = new Router({
       }
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+      path: '/dashboard/create',
+      name: 'createUser',
+      components: {
+        default: Dashboard,
+        modal: Modal
+      },
+      props: {
+        modal: () => ({ content: CreateUser })
+      },
+      meta: {
+        private: true
+      }
+    },
   ]
 });
 
 RouterVue.beforeEach((to, from, next) => {
-  const currentUser = firebase.auth().currentUser;
-  console.log('User', currentUser);
+  const { currentUser } = firebase.auth();
 
   if (to.matched.some(route => route.meta.private) && !currentUser) {
     next('/login');

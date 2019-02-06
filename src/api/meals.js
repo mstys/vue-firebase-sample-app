@@ -1,5 +1,8 @@
 import { meals } from '../firebaseConfig';
 
+/**
+ * Get data from firestore
+ */
 class MealsApi {
   static getMeals() {
     return meals.get().then((docs) => {

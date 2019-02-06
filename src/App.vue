@@ -6,8 +6,6 @@
     </div>
     <router-view />
     <router-view name="modal" />
-    <!-- <router-view name="modal"></router-view> -->
-    <!-- <Cart /> -->
   </div>
 </template>
 
@@ -16,13 +14,11 @@ import firebase from 'firebase';
 import { mapState, mapActions } from 'vuex';
 import Navbar from '@/components/Navbar';
 import types from './store/types';
-// import Cart from '@/components/cart/Cart';
 
 export default {
   name: 'app',
   components: {
     Navbar
-    // Cart,
   },
   computed: {
     ...mapState({
@@ -33,7 +29,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      logout: types.auth.logout // map `this.add()` to `this.$store.dispatch('increment')`
+      logout: types.auth.logout
     }),
     onLogoutClick() {
       firebase
@@ -43,7 +39,7 @@ export default {
           this.logout();
           this.$router.replace({ name: 'home' });
         })
-        .catch(e => {
+        .catch((e) => {
           console.error(e);
         });
     }
@@ -79,6 +75,18 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
+  opacity: 0;
+}
+
+.slide-fade-down-enter-active {
+  transition: all 0.3s ease-in-out;
+}
+.slide-fade-down-leave-active {
+  transition: all 0.8s ease-out
+}
+.slide-fade-down-enter, .slide-fade-down-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(10%);
   opacity: 0;
 }
 </style>

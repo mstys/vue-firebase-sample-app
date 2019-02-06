@@ -1,21 +1,34 @@
 <template>
   <div class="home">
+    <b-container>
     <img alt="Vue logo" src="../assets/logo.png">
     <h1>Home page</h1>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <router-link class="btn btn-primary" to="/login">Login</router-link>
+    <b-row>
+      <b-col sm="12">
+        <router-link class="btn btn-primary" to="/login" v-if="!authenticated">Login</router-link>
+      </b-col>
+      <b-col sm="12" class="mt-4">
+        <router-link :to="{name: 'aboutProject'}" class="btn btn-secondary">
+          About configuration
+        </router-link>
+      </b-col>
+    </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Authorization from '@/api/auth';
+import { mapState } from 'vuex';
 
 export default {
   name: 'home',
-  created() {
+  computed: {
+    ...mapState({
+      authenticated: state => state.auth.authenticated
+    })
   },
-  components: {
-  },
+  created() {},
+  components: {}
 };
 </script>

@@ -15,8 +15,8 @@ export default {
   mounted() {
     ui.start('#firebaseui-auth-container', {
       callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          console.log(authResult, redirectUrl);
+        // eslint-disable-next-line
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
           // User successfully signed in.
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.
@@ -29,11 +29,7 @@ export default {
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         {
-          customParameters: {
-            // Forces account selection even when one account
-            // is available.
-            // prompt: 'select_account'
-          }
+          customParameters: {}
         }
       ]
     });

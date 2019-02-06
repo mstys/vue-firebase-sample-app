@@ -5,8 +5,9 @@ import auth from './authorization';
 import cart from './cart';
 import meals from './meals';
 import beers from './beers';
+import customers from './customers';
 
-import { meals as mealsRef } from '../firebaseConfig';
+import { meals as mealsRef, customers as customersRef } from '../firebaseConfig';
 
 Vue.use(Vuex);
 
@@ -15,26 +16,25 @@ const store = new Vuex.Store({
     auth,
     cart,
     meals,
-    beers
+    beers,
+    customers
   },
   actions: {
     setMealsRef: firebaseAction(({ bindFirebaseRef }, ref) => {
       bindFirebaseRef('meals', ref);
+    }),
+
+    setCustomersRef: firebaseAction(({ bindFirebaseRef }, ref) => {
+      bindFirebaseRef('customers', ref);
     })
   },
   mutations: { ...firebaseMutations }
 });
 
 /**
- * Meals firebase listener
- * move to external file
- */
-
-// mealsRef.onSnapshot(param => store.dispatch(types.meals.update, param));
-
-/**
  * Store-firebase bind
  */
 store.dispatch('setMealsRef', mealsRef);
+store.dispatch('setCustomersRef', customersRef);
 
 export default store;

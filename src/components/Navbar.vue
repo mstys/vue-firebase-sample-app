@@ -3,9 +3,10 @@
     <ul class="navbar-links">
       <li class="navbar-item"><router-link to="/">Home</router-link> </li>
       <li class="navbar-item"><router-link to="/about">About</router-link></li>
-      <li class="navbar-item"><router-link to="/meals">Meals</router-link></li>
       <li class="navbar-item"> <router-link to="/beers">Beers</router-link></li>
-      <li class="navbar-item" v-if="isLogged"> <router-link to="/dashboard">Dashboard</router-link></li>
+      <li class="navbar-item" v-if="isLogged">
+        <router-link to="/dashboard">Dashboard</router-link>
+      </li>
     </ul>
     <div class="navbar-user" v-if="isLogged">
       <p class="navbar-username">{{ user.displayName }}</p>
@@ -22,7 +23,7 @@ export default {
   name: 'navbar',
   props: {
     user: Object,
-    isLogged: Boolean,
+    isLogged: Boolean
   }
 };
 </script>

@@ -1,9 +1,7 @@
-// import Vue from 'vue';
 import types from './types';
 
 const state = {
   cart: [],
-  test: 'test'
 };
 
 const mutations = {

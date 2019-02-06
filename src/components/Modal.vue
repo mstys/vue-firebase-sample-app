@@ -62,6 +62,7 @@ export default {
   &__inner {
     height: 100%;
   }
+
 }
 
 .btn-close {

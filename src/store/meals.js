@@ -14,6 +14,10 @@ const mutations = {
 };
 
 const actions = {
+  /**
+   * Get data from firestore and put into vuex
+   * Those data are not live-synced with firestore
+   */
   async [types.meals.fetch]({ commit }) {
     const meals = await MealsApi.getMeals();
     commit(types.meals.fetch, meals);

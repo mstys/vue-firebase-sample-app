@@ -9,18 +9,24 @@ const getters = {};
 
 const mutations = {
   [types.beers.fetch](state, beers) {
-    state.all = {
+    state.all = [
       ...beers,
-    };
+    ];
   }
 };
 
 const actions = {
+  /**
+   * Get data from REST API
+   * and commit mutation to save in vuex
+   */
   async [types.beers.fetch]({ commit }) {
-    const data = await BeerApi.getBeers();
-
-    commit(types.beers.fetch, data);
-    return data;
+    try {
+      const data = await BeerApi.getBeers();
+      commit(types.beers.fetch, data);
+    } catch (e) {
+      console.error(e);
+    }
   }
 };
 

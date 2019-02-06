@@ -17,4 +17,8 @@ export default {
     fetch: 'meals/fetch',
     update: 'meals/update',
   },
+  dashboard: {
+    addUser: 'dashboard/addUser',
+    update: 'meals/update',
+  },
 };

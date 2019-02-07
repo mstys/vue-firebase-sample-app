@@ -77,6 +77,10 @@ export default {
     }),
     onSubmit(evt) {
       evt.preventDefault();
+
+      /**
+       * Call action to send data to firestore
+       */
       this.addUser(this.form).then(() => {
         this.$router.push({ name: 'dashboard' });
       });

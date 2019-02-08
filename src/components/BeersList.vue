@@ -31,12 +31,16 @@ export default {
   },
   computed: {
     ...mapState({
+      /**
+       * Reference to data store in vuex
+       */
       beers: state => state.beers.all
     })
   },
   created() {
     /**
      * Fetch data
+     * Call action in vuex to get data
      */
     this.fetchBeers();
   },

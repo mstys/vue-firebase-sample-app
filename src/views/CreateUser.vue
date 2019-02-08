@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import types from '../store/types';
 
 export default {
@@ -68,7 +68,7 @@ export default {
         lastName: '',
         gender: null
       },
-      options: { '1': 'Male', '2': 'Female' }
+      options: { 1: 'Male', 2: 'Female' }
     };
   },
   methods: {

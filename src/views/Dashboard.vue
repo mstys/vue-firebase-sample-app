@@ -47,8 +47,10 @@ export default {
   },
   computed: {
     ...mapState({
+      /**
+       * Customers fetched from firestore
+       */
       customers: state => state.customers,
-      beers: state => state.beers.all,
     })
   },
   data() {
